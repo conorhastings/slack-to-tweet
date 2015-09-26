@@ -21,8 +21,9 @@ middler(server, function (req, res, next) {
 		if(data && data.length) {
 			var parsedData = data.split('=');
 			var fromUser = parsedData[9].split('&')[0];
-			var message = parsedData[10].split('+').join(' ');
-			var tweet = 'From: ' + fromUser + ' ==> ' + message;
+			var message = parsedData[10];
+			var parsedMessage = parseMessage(message);
+			var tweet = 'From: ' + fromUser + ' ==> ' + parsedMessage;
 			twitter.post('statuses/update', {status: tweet}, function(err, myTweet, response){
 				console.log(response);
 			});
@@ -32,4 +33,15 @@ middler(server, function (req, res, next) {
 	});
 });
 
+
+function parseMessage(message) {
+	message = decodeURIComponent(message);
+	message = message.split('http');
+	if(message[1]) {
+		message[1] = 'http' + message[1];
+	}
+	message[0] = message[0].split('+').join(' ');
+	message = message.join(' ');
+	return message;
+}
 server.listen(process.env.PORT || 4000);
