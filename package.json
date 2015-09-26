@@ -1,0 +1,15 @@
+{
+  "name": "what-are-we-reading",
+  "version": "0.0.1",
+  "description": "a webserver that takes posts in the what are we reading channel and tweets them",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --harmony index.js"
+  },
+  "author": "Conor Hastings",
+  "license": "MIT",
+  "dependencies": {
+    "middler": "^0.8.1",
+    "twitter": "^1.2.5"
+  }
+}
