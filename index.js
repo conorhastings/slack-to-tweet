@@ -20,9 +20,9 @@ middler(server, function (req, res, next) {
 		console.log(data);
 		if(data && data.length) {
 			var parsedData = data.split('=');
-			var fromUser = parsedData[9].split("&")[0];
-			var message = parsedData[10].split("+").join(" ");
-			var tweet = "From: " + fromUser + " ==> " + message;
+			var fromUser = parsedData[9].split('&')[0];
+			var message = parsedData[10].split('+').join(' ');
+			var tweet = 'From: ' + fromUser + ' ==> ' + message;
 			twitter.post('statuses/update', {status: tweet}, function(err, myTweet, response){
 				console.log(response);
 			});
