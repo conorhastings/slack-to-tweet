@@ -19,8 +19,10 @@ middler(server, function (req, res, next) {
 	req.once('end', function () {
 		console.log(data);
 		if(data && data.length) {
-			var parsedData = JSON.parse(data);
-			var tweet = "From: " + parsedData.user_name + " ==> " + parsedData.text;
+			var parsedData = data.split('=');
+			var fromUser = parsedData[9].split("&")[0];
+			var message = parsedData[10].split("+").join(" ");
+			var tweet = "From: " + fromUser + " ==> " + message;
 			twitter.post('statuses/update', {status: tweet}, function(err, myTweet, response){
 				console.log(response);
 			});
