@@ -1,10 +1,10 @@
 {
-  "name": "what-are-we-reading",
+  "name": "slack-to-tweet",
   "version": "0.0.1",
-  "description": "a webserver that takes posts in the what are we reading channel and tweets them",
+  "description": "a webserver that listens for outgoing webhook from slack and posts to twitter",
   "main": "index.js",
   "scripts": {
-    "start": "node --harmony index.js"
+    "start": "node --harmony server.js"
   },
   "author": "Conor Hastings",
   "license": "MIT",
