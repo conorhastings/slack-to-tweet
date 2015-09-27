@@ -1,6 +1,6 @@
 {
   "name": "slack-to-tweet",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a webserver that listens for outgoing webhook from slack and posts to twitter",
   "main": "index.js",
   "author": "Conor Hastings",
