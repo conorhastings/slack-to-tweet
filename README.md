@@ -2,6 +2,10 @@
 
 An npm module that returns a simple server that will post from a slack channel to twitter.
 
+### Install
+
+`npm i slack-to-tweet`
+
 ### Use
 
 Set up an outgoing webhook for the slack channel you would like to connect to twitter. In twitter set up an application, and acquire the keys for that application. Implement the code below and deploy the server (heroku deployment  is very easy). The `formatMessage` function allows you to contorl the output of the message. Currently messages over 140 characters will not be posted.
