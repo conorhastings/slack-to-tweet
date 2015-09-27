@@ -8,7 +8,9 @@ An npm module that returns a simple server that will post from a slack channel t
 
 ### Use
 
-Set up an outgoing webhook for the slack channel you would like to connect to twitter. In twitter set up an application, and acquire the keys for that application. Implement the code below and deploy the server (heroku deployment  is very easy). The `formatMessage` function allows you to contorl the output of the message. Currently messages over 140 characters will not be posted.
+Set up an outgoing webhook for the slack channel you would like to connect to twitter. In twitter set up an application, and acquire the keys for that application. Implement the code below and deploy the server (heroku deployment  is very easy). The `formatMessage` function allows you to contorl the output of the message. Currently messages over 140 characters will not be posted. 
+
+You may pass through an optional `userMap` paramater utilizing slack username as the key and twitter username as the value. If there is match in the map, it will default to the slack username.
 
 
 ```js
@@ -20,6 +22,9 @@ Set up an outgoing webhook for the slack channel you would like to connect to tw
 		twitterAccessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
 		formatMessage: function(user, message){
 			return "From " + user + ": " + message;
+		},
+		userMap: {
+			conor: "@stillconor"
 		}
 	};
 	var slackToTweetServer = slackToTweet(slackToTweetSettings).listen(process.env.PORT || 4000);
