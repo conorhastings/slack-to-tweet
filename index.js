@@ -11,7 +11,7 @@ slackToTweetServer = function(opts) {
 		access_token_secret: opts.twitterAccessTokenSecret
 	});
 	var formatMessage = opts.formatMessage;
-	if (!formatMessage) {
+	if(!formatMessage) {
 		formatMessage = function(user, message) {
 			return 'From: ' + user + ' ==> ' + message;
 		}
@@ -26,6 +26,9 @@ slackToTweetServer = function(opts) {
 			if(data && data.length) {
 				var parsedData = data.split('=');
 				var fromUser = parsedData[9].split('&')[0];
+				if(opts.userMap) {
+					fromUser = opts.userMap[fromUser] || fromUser;
+				}
 				var message = parsedData[10];
 				//TODO allow user to pass in there own parse message function, not everyone cares about http processing
 				var parsedMessage = parseMessage(message);
