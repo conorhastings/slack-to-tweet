@@ -26,17 +26,19 @@ slackToTweetServer = function(opts) {
 			if(data && data.length) {
 				var parsedData = data.split('=');
 				var fromUser = parsedData[9].split('&')[0];
-				if(opts.userMap) {
-					fromUser = opts.userMap[fromUser] || fromUser;
+				if(!(fromUser === "slackbot")) {
+					if(opts.userMap) {
+						fromUser = opts.userMap[fromUser] || fromUser;
+					}
+					var message = parsedData[10];
+					//TODO allow user to pass in there own parse message function, not everyone cares about http processing
+					var parsedMessage = parseMessage(message);
+					var tweet = formatMessage(fromUser, parsedMessage);
+					twitter.post('statuses/update', {status: tweet}, function(err, myTweet, response){
+						//TODO, handle errors and stuff
+						console.log(response);
+					});
 				}
-				var message = parsedData[10];
-				//TODO allow user to pass in there own parse message function, not everyone cares about http processing
-				var parsedMessage = parseMessage(message);
-				var tweet = formatMessage(fromUser, parsedMessage);
-				twitter.post('statuses/update', {status: tweet}, function(err, myTweet, response){
-					//TODO, handle errors and stuff
-					console.log(response);
-				});
 			}
 			//TODO don't just always return a 200
 			res.writeHead(200);
