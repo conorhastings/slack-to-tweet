@@ -11,7 +11,7 @@ slackToTweetServer = function(opts) {
 		access_token_secret: opts.twitterAccessTokenSecret
 	});
 	var formatMessage = opts.formatMessage;
-	var shouldTweet = opt.shouldTweet || function(){return true};
+	var shouldTweet = opts.shouldTweet || function(){return true};
 	if(!formatMessage) {
 		formatMessage = function(user, message) {
 			return 'From: ' + user + ' ==> ' + message;
