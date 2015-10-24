@@ -1,6 +1,6 @@
 # Slack To Tweet
 
-An npm module that returns a simple server that will post from a slack channel to twitter.
+An npm module that returns a simple server that will post messages from a slack channel to twitter.
 
 ### Install
 
